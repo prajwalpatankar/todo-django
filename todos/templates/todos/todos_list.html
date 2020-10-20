@@ -25,14 +25,31 @@
                                     <input type="text" class="form-control" name="content">
                                     <span class="input-group-text bg-whitepy-0">
                                         <button type="submit" class="btn btn-sm text-info">
-                                            <i class="fa fa-plus-circle fa-lg"></i>
+                                            <h7 class="sm blue">+</h7>
                                         </button>
                                     </span>
                                 </div>
                             </form></li>
 
                             {% for todo in todo_list %}
-                            <li class="list-group-item">{{todo.context}}</li>
+                            <li class="list-group-item">
+                                {{todo.content}}
+                                <form action="{% url 'delete_todo_item' todo.id %}" method= "post" class="float-right d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn">
+                                        <h4 class="text-danger float-right">X</h4>
+                                    </button>
+                                </form>
+                            </li>
+                            
+                            
+                            
+                            
+                            {% empty  %}
+                            <li class="list-group-item">
+                                <span class="font-italic">No todo items founds</span>
+                            </li>
+                            {% endfor %}
                         </ul>
 
                     </div>

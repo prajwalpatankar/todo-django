@@ -11,3 +11,8 @@ def insert_todo_item(request:HttpRequest):
     todo = Todo(content = request.POST["content"]) #[content] is the name in form(html)
     todo.save()
     return redirect('/todos/list/')
+
+def delete_todo_item(request,todo_id):
+    todo_to_delete = Todo.objects.get(id=todo_id)
+    todo_to_delete.delete()
+    return redirect('/todos/list')
